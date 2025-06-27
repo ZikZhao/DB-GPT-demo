@@ -6,7 +6,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B")
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B").to(device)
 
-model = peft.PeftModel.from_pretrained(model, "./results", device_map="auto")
+model = peft.PeftModel.from_pretrained(model, "./output/checkpoint-320/", device_map="auto")
 model = model.merge_and_unload().to(device)
 tokenizer.pad_token = tokenizer.eos_token
 
